@@ -7,8 +7,8 @@ double GetScoresAndAverage(int sentinel = -1);
 int main()
 {
     cout << GetScoresAndAverage(-1);
-    
-    return 0;
+    cout << __cplusplus;
+     return 0;
 }
 
 double GetScoresAndAverage(int sentinel) {
