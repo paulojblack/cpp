@@ -6,13 +6,13 @@ using namespace std;
 struct score_stats {
     int min;
     int max;
-    int avg;
+    double avg;
 };
 
 int main() {
     string line;
     int num;
-    int sum = 0;
+    double sum = 0;
     int counter = 0;
     score_stats s;
 
@@ -26,8 +26,7 @@ int main() {
                 s.min = num;
             }
             if (!s.max || num > s.max) {
-                s.max = num;
-            }
+                s.max = num;            }
             sum = sum + stoi(line);
 
         }
