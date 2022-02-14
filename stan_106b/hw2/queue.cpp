@@ -29,6 +29,4 @@ void ReverseQueue(queue<int> &q) {
         q.push(tmp.top());
         tmp.pop();
     }
-    // cout << "tmpFront: " << tmp.front() << "\nBack: " << tmp.back() << endl;
-    // q.swap(tmp);
 };
