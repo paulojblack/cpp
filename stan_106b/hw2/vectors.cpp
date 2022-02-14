@@ -28,36 +28,27 @@ bool ShouldRemove(eMailMsg &e);
     cout << "Size before removal: " << emails.size() << endl;
     RemoveEmails(emails);
     cout << "Size after removal: " << emails.size() << endl;
-    cout << emails[0].to;
+
+    for (int i = 0; i < emails.size(); i++) {
+        cout << "Email " << i << " subject is: " << emails[i].subject << endl;
+    }
+
     return 0;
 };
 
 void RemoveEmails(vector<eMailMsg> &emails) {
-    // Gonna get real ugly with this
-    vector<int> indicesToRemove;
-    for (int i = emails.size() - 1; i >=0; i--) {
-        // Add idx to removal list if rfind at string idx 0 returns a find
-        // if (emails[i].subject.rfind("SPAM", 0) != std::string::npos) {
-        //     emails.erase(i);
-        // }
-    }
-
-    remove_if(emails.begin(), emails.end(), ShouldRemove);
+    // this is batshit
+    // idk why i cant stick a lambda in the third arg of remove_if, but the compiler slaps me
+    emails.erase(remove_if(emails.begin(), emails.end(), ShouldRemove), emails.end());
     cout << "inline size: " << emails.size() << endl;
-    // for (int i = 0; i < indicesToRemove.size(); i++) {
-    //     cout << indicesToRemove[i] << endl;
-    //     emails.erase(emails.begin()+indicesToRemove[i]);
-    // }
-
-    // cout << emails.size();
+ 
 };
 
 bool ShouldRemove(eMailMsg &e) {
-
+    // rfind, index 0 of subject string, if does NOT evaluate to not npos, i.e. does eval to found, return true, rm from vector
     if (e.subject.rfind("SPAM", 0) != std::string::npos){
-        cout << "FOUND~!" << endl;
-        return false;
+        return true;
     }
 
-    return true;
+    return false;
 };
