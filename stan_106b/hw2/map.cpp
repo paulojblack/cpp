@@ -8,22 +8,42 @@ char MostFrequentCharacter(ifstream &file, int &numOccurrences);
 int main() {
     ifstream file;
     
-    int numOccurences;
+    int numOccurences = 0;
+    //stupid signature but w/e im just following orders :(
     char mostOccuredChar = MostFrequentCharacter(file, numOccurences);
+
+    cout << "The most frequently seen character is: " << mostOccuredChar << " occurring " << numOccurences << " times." << endl;
 }
 
 char MostFrequentCharacter(ifstream &file, int &numOccurrences) {
-    map<char, int> butts;
+    char result;
+    map<char, int> mymap;
     string line;
     file.open("./map.txt");
+
+    // Build frequency map
     while(getline(file, line)) {
         for(int i = 0; i < line.length(); i++) {
-            cout << line[i] << endl;
+            char letter = tolower(line[i]);
+            if (!mymap[letter]) {
+                mymap[letter] = 1;
+            } else {
+                mymap[letter] = ++mymap[letter];
+            }
         }
-        cout << line << endl;
     }
-    butts.insert(std::pair<char, int>('a', 100));
-    cout << butts.count('a') << endl;
-    cout << butts.count('b') << endl;
-    return 'a';
+
+    for(std::map<char,int>::iterator iter = mymap.begin(); iter != mymap.end(); ++iter) {
+        char k = iter->first;
+        int v = iter->second;
+
+        // Set new most occured val/char
+        if (v > numOccurrences) {
+            numOccurrences = v;
+            result = k;
+        }
+        cout << numOccurrences << endl;
+        cout << "Key: " << k << " Val: " << v << endl;
+    }
+    return result;
 }
