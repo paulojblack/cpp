@@ -23,6 +23,7 @@ char MostFrequentCharacter(ifstream &file, int &numOccurrences) {
         cout << line << endl;
     }
     butts.insert(std::pair<char, int>('a', 100));
-    cout << butts.at('b') << endl;
+    cout << butts.count('a') << endl;
+    cout << butts.count('b') << endl;
     return 'a';
 }
